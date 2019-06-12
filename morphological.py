@@ -39,7 +39,7 @@ closing = cv2.morphologyEx(black_noise_img, cv2.MORPH_CLOSE, kernel)
 
 
 # Morphological Gradient (Edge Detection)
-# It take the different of the erosion and dilation
+# It takes the different of the erosion and dilation
 # erosion will get rid between background and forground edge
 # Dilation will end up adding more bubbly to the image
 gradient = cv2.morphologyEx(blank_img, cv2.MORPH_GRADIENT, kernel)
