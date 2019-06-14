@@ -2,42 +2,40 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-# read image
-img1 = cv2.imread('./Dog-Backpack-Carriers.jpg')
-img2 = cv2.imread('./do-not-copy.png')
+img = cv2.imread('./images/internal_external.png')
+img_copy = img.copy().astype(np.int16)
 
-# convert image
-img1 = cv2.cvtColor(src=img1, code=cv2.COLOR_BGR2RGB)
-img2 = cv2.cvtColor(src=img2, code=cv2.COLOR_BGR2RGB)
+black_bg = np.zeros((100, 100, 3), np.uint8)
 
-# resize image
-img2 = cv2.resize(src=img2, dsize=(300, 300))
+cv2.putText(black_bg, "i", (10, 80),
+            cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 3)
+kernel = np.ones((3, 3), np.uint8)
+black_bg = cv2.erode(black_bg, kernel, 3)
 
-# offset image
-x_offset = img1.shape[1] - img2.shape[1]
-y_offset = img1.shape[0] - img2.shape[0]
+dilation = cv2.dilate(black_bg, kernel, 1)
 
-img_offset = img1[y_offset:img1.shape[0], x_offset:img1.shape[1]]
-
-# gray image
-gray_img = cv2.cvtColor(src=img2, code=cv2.COLOR_BGR2GRAY)
-
-# invert_img
-bitwise_img = cv2.bitwise_not(src=gray_img)
-
-# white background
-white_background = np.full(img2.shape, 255, np.uint8)
+# img_copy = img.copy()
+print(img.shape)
 
 
-# Apply 3 channel to mask
-bk = cv2.bitwise_or(white_background, white_background, mask=bitwise_img)
-fg = cv2.bitwise_or(img2, img2, mask=bitwise_img)
+# 131 : 1 row, 3 column picture 1th
+plt.subplot(131)
+plt.title('image')
+plt.imshow(img)
 
-final = cv2.bitwise_or(img_offset, fg)
-large_img = img1
-small_img = final
+plt.subplot(132)
+plt.title('image copy')
+plt.imshow(img_copy+3)
 
-large_img[y_offset:img1.shape[0], x_offset:img1.shape[1]] = small_img
+plt.subplot(133)
+plt.title('black image')
+plt.imshow(dilation)
 
-plt.imshow(large_img)
+plt.suptitle('Comparation')
+
 plt.show()
+# while True:
+#     cv2.imshow('frame', img1)
+#     if cv2.waitKey(1) == 27:
+#         break
+# cv2.destroyAllWindows()

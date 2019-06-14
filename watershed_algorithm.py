@@ -35,17 +35,18 @@ gray_coin = cv2.cvtColor(blur_coin, cv2.COLOR_BGR2GRAY)
 ret, thresh = cv2.threshold(
     gray_coin, 0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
 
-
+display(thresh)
 # noise removal (optional)
 kernel = np.ones((3, 3), np.uint8)
 
 opening = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=2)
+display(opening)
 
 
 sure_bg = cv2.dilate(opening, kernel, iterations=3)
-
+display(sure_bg)
 dist_transform = cv2.distanceTransform(opening, cv2.DIST_L2, 5)
-
+display(dist_transform)
 ret, sure_fg = cv2.threshold(dist_transform, 0.7*dist_transform.max(), 255, 0)
 
 
