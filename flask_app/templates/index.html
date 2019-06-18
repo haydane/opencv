@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="jumbotron text-center mt-3">
+    <h1>Welcome to Flask App</h1>
+    <p class="lead">This application is built on the python flask fraemwork and Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Expedita cumque dolorum sequi soluta vero, eligendi sed eius vitae, quod
+        animi, obcaecati cum ducimus unde vel quo quasi iste. Beatae, voluptatum!</p>
+</div>
+<form action="/" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="">Image</label>
+        <input type="file" class="form-control" placeholder="select an image you want to compare" name="img">
+    </div>
+    <input class="btn btn-primary" type="submit" value="Compare">
+</form>
+
+{% endblock body %}

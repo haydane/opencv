@@ -4,6 +4,8 @@ import matplotlib.pylab as plt
 cap = cv2.VideoCapture(0)
 width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+frame = int(cap.get(cv2.CAP_PROP_FPS))
+frame = int(cap.get(cv2.capprop))
 colors = ('g', 'b', 'r')
 # fourcc is 4-byte code used to specify the video codec,
 #  XVID for linux
@@ -13,6 +15,8 @@ colors = ('g', 'b', 'r')
 #     cv2.VideoWriter_fourcc(*'XVID'),
 #     10,  # img speed
 #     (width, height))
+
+print(width, height, frame)
 
 while True:
     # read all cap to frame

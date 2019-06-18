@@ -11,7 +11,7 @@ def display(img, cmap='gray'):
 
 
 reeses = cv2.imread('./images/reeses-puffs.png', 0)
-cereals = cv2.imread('./images/many cereal.jpg', 0)
+cereals = cv2.imread('./images/many_cereal.jpg', 0)
 
 
 # # 1. get key point sudo apt-get updateand descripter

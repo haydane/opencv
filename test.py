@@ -2,6 +2,19 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
+import Tkinter
+import tkFileDialog
+import os
+
+root = Tkinter.Tk()
+root.withdraw()  # use to hide tkinter window
+
+currdir = os.getcwd()
+tempdir = tkFileDialog.askdirectory(
+    parent=root, initialdir=currdir, title='Please select a directory')
+if len(tempdir) > 0:
+    print "You chose %s" % tempdir
+
 img = cv2.imread('./images/internal_external.png')
 img_copy = img.copy().astype(np.int16)
 

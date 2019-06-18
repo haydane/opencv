@@ -2,6 +2,7 @@ import cv2
 import glob
 import matplotlib.pyplot as plt
 import numpy as np
+from datetime import datetime
 
 
 def display(img, cmap='gray'):
@@ -11,10 +12,12 @@ def display(img, cmap='gray'):
     plt.show()
 
 
-path = "./images/*.png"
+path = "./images/*.jpg"
+# path = ""
 
 
 def feature_matching(img, path):
+    start_time = datetime.now()
     sift = cv2.xfeatures2d.SIFT_create()
     kp1, des1 = sift.detectAndCompute(img, None)
     for file in glob.glob(path):
@@ -35,11 +38,17 @@ def feature_matching(img, path):
         good = []
 
         for i, (match1, match2) in enumerate(matches):
-            if match1.distance < 0.7 * match2.distance:
+            if match1.distance < 0.8 * match2.distance:
                 good.append(match1)
         if len(good) > 80:
             print(file)
 
+    end_time = datetime.now()
+    res_time = end_time - start_time
+    count_img = len(glob.glob(path))
+    print('image count: ', len(glob.glob(path)))
+    print('time: ', res_time.seconds, "seconds")
 
-reeses = cv2.imread('./images/reeses-puffs.png', 0)
+
+reeses = cv2.imread('./images/Denis_Mukwege.jpg', 0)
 feature_matching(reeses, path)
