@@ -2,10 +2,23 @@
 
 {% block body %}
 
-<div class="jumbotron text-center mt-3">
+<div class="jumbotron mt-3">
 
-    <h1>Welcome to About Page</h1>
-    <p class="lead">Thank You! The Result is in Console</p>
+    <h1 style="text-align: center">Welcome to About Page</h1>
+    <p style="text-align: center" class="lead">Thank You! Check the result here!</p>
+
+    <h3>List of Matching image:</h3>
+    <ul>
+        {% for arr_i in arr_img %}
+        <li><img src="{{ arr_i }}" width="100px" height="100px" alt="img"></li>
+        {% endfor %}
+    </ul>
+    <h3>List of Data:</h3>
+
+    <ul>
+        <li>Image Count: {{ arr[0] }} images</li>
+        <li>Time Totaly Used: {{ arr[1] }}</li>
+    </ul>
 </div>
 
 

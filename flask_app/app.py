@@ -11,9 +11,14 @@ app = Flask(__name__)
 UPLOAD_FOLDER = './upload'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+arr_img = []
+arr = []
+
 
 def feature_matching(img):
-    path = '../images/*.jpg'
+    arr.clear()
+    arr_img.clear()
+    path = './static/*.jpg'
     print('============================')
     print('\n\n\n\n')
     print('you are comparing: \n', 'path: ',
@@ -40,15 +45,20 @@ def feature_matching(img):
         good = []
 
         for i, (match1, match2) in enumerate(matches):
-            if match1.distance < 0.8 * match2.distance:
+            if match1.distance < 0.7 * match2.distance:
                 good.append(match1)
-        if len(good) > 80:
+        if len(good) > 90:
             print('here is the matching image: ', file)
+            arr_img.append(file)
 
     end_time = datetime.now()
     res_time = end_time - start_time
+    img_count = len(glob.glob(path))
     print('image count in path: ', len(glob.glob(path)))
     print('time used: ', res_time.seconds, "seconds")
+    arr.append(img_count)
+    arr.append(res_time)
+    return arr, arr_img
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -66,7 +76,7 @@ def index():
         # print('\n\n\n\n')
         print('============================')
         print('\n\n\n\n')
-        return render_template('about.html')
+        return render_template('about.html', arr=arr, arr_img=arr_img)
     return render_template('index.html')
 
 
