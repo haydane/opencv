@@ -47,6 +47,8 @@ def detect_eyes(img):
 # plt.show()
 
 cap = cv2.VideoCapture(0)
+# cap.set(cv2.CAP_PROP_FRAME_WIDTH, 300)
+# cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 300)
 while True:
     ret, frame = cap.read(0)
     frame = detect_face(frame)
