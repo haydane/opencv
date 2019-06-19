@@ -17,7 +17,7 @@ def detect_face(img):
     face_img = img.copy()
     face_rects = face_cascade.detectMultiScale(face_img)
     for (x, y, w, h) in face_rects:
-        cv2.rectangle(face_img, (x, y), (x+w, y+h), (255, 255, 255), 3)
+        cv2.rectangle(face_img, (x, y), (x+w, y+h), (0, 255, 0), 3)
     return face_img
 
 
@@ -27,7 +27,7 @@ def adj_detect_face(img):
         face_img, scaleFactor=1.3, minNeighbors=5)
     for (x, y, w, h) in face_rects:
         cv2.rectangle(
-            face_img, (x, y), (x+w, y+h), (255, 255, 255), 3)
+            face_img, (x, y), (x+w, y+h), (0, 255, 0), 3)
     return face_img
 
 
@@ -36,7 +36,7 @@ def detect_eyes(img):
     eye_rects = eye_cascade.detectMultiScale(
         face_img, scaleFactor=1.3, minNeighbors=5)
     for (x, y, w, h) in eye_rects:
-        cv2.rectangle(face_img, (x, y), (x+w, y+h), (255, 255, 255), 3)
+        cv2.rectangle(face_img, (x, y), (x+w, y+h), (0, 255, 0), 3)
     return face_img
 
 
