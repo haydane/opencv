@@ -2,14 +2,14 @@
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-dog = cv2.imread('./Dog-Backpack-Carriers.jpg')
+dog = cv2.imread('./images/Dog-Backpack-Carriers.jpg')
 show_dog = cv2.cvtColor(dog, cv2.COLOR_BGR2RGB)
-dane = cv2.imread('./haydane.jpg')
+dane = cv2.imread('./images/haydane.jpg')
 show_dane = cv2.cvtColor(dane, cv2.COLOR_BGR2RGB)
-rainbow = cv2.imread('./rainbow.jpeg')
+rainbow = cv2.imread('./images/rainbow.jpeg')
 show_rainbow = cv2.cvtColor(rainbow, cv2.COLOR_BGR2RGB)
-gorilla = cv2.imread('./gorilla.jpg')
-gray_gorilla = cv2.imread('./gorilla.jpg', 0)
+gorilla = cv2.imread('./images/gorilla.jpg')
+gray_gorilla = cv2.imread('./images/gorilla.jpg', 0)
 color_gorilla = cv2.cvtColor(gorilla, cv2.COLOR_BGR2RGB)
 
 # use calcHist to get histogram value

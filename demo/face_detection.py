@@ -3,21 +3,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-nadia = cv2.imread('./images/Nadia_Murad.jpg', 0)
-denis = cv2.imread('./images/Denis_Mukwege.jpg', 0)
-solvay = cv2.imread('./images/solvay_conference.jpg', 0)
+nadia = cv2.imread('../images/Nadia_Murad.jpg', 0)
+denis = cv2.imread('../images/Denis_Mukwege.jpg', 0)
+solvay = cv2.imread('../images/solvay_conference.jpg', 0)
 
 face_cascade = cv2.CascadeClassifier(
-    '../Document/Computer-Vision-with-Python/DATA/haarcascades/haarcascade_frontalface_default.xml')
+    '../../Document/Computer-Vision-with-Python/DATA/haarcascades/haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier(
-    '../Document/Computer-Vision-with-Python/DATA/haarcascades/haarcascade_eye.xml')
+    '../../Document/Computer-Vision-with-Python/DATA/haarcascades/haarcascade_eye.xml')
 
 
 def detect_face(img):
     face_img = img.copy()
     face_rects = face_cascade.detectMultiScale(face_img)
     for (x, y, w, h) in face_rects:
-        cv2.rectangle(face_img, (x, y), (x+w, y+h), (0, 0, 255), 3)
+        cv2.rectangle(face_img, (x, y), (x+w, y+h), (255, 0, 0), 3)
     return face_img
 
 
@@ -51,7 +51,7 @@ cap = cv2.VideoCapture(0)
 # cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 300)
 while True:
     ret, frame = cap.read(0)
-    frame = detect_eyes(frame)
+    frame = detect_face(frame)
     cv2.imshow('Video Capture', frame)
 
     k = cv2.waitKey(1)

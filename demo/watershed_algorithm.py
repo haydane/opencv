@@ -15,7 +15,7 @@ def display(img, cmap='gray'):
 # find contour
 
 
-coin = cv2.imread('./images/coin.jpg')
+coin = cv2.imread('../images/coin.jpg')
 coin_copy = coin.copy()
 blur_coin = cv2.medianBlur(coin, ksize=35)
 gray_coin = cv2.cvtColor(blur_coin, cv2.COLOR_BGR2GRAY)

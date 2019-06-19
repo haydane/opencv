@@ -5,7 +5,7 @@ import numpy as np
 # contours are a useful tool for shape analysis and object detection and recognition
 
 # pass 0 to read as a gray scale
-smiley = cv2.imread('./images/internal_external.png', 0)
+smiley = cv2.imread('../images/internal_external.png', 0)
 # plt.imshow(smiley, cmap='gray')
 # internal and external contour
 image, contours, hirerachy = cv2.findContours(
@@ -13,7 +13,7 @@ image, contours, hirerachy = cv2.findContours(
 
 # print(type(contours), len(contours), type(hirerachy))
 # print(list(range(len(contours))))
-print(hirerachy)
+# print(hirerachy)
 
 # copy image shape
 external_contours = np.zeros(smiley.shape)

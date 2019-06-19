@@ -46,7 +46,7 @@ median_value = np.median(dog_crop)
 
 
 # lower threshold to either 0 or 70% of the median value whichever is greater
-lower_bound_threshold = int(mfig(0, 0.7*median_value))
+lower_bound_threshold = int(max(0, 0.7*median_value))
 
 # upper threshold to either 130% of the median or the mfig 255, whichever is smaller
 upper_bound_threshold = int(min(255, 1.3*median_value))

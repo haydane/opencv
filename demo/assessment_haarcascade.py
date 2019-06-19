@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-img = cv2.imread('./images/car_plate.png')
+img = cv2.imread('../images/car_plate.png')
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 
@@ -15,7 +15,7 @@ def display(img):
 
 
 plate_cascade = cv2.CascadeClassifier(
-    '../Document/Computer-Vision-with-Python/DATA/haarcascades/haarcascade_russian_plate_number.xml')
+    '../../Document/Computer-Vision-with-Python/DATA/haarcascades/haarcascade_russian_plate_number.xml')
 
 
 def detect_plate(img):

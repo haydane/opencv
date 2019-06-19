@@ -3,14 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # read img
-img = cv2.imread('Dog-Backpack-Carriers.jpg')
+img = cv2.imread('./images/Dog-Backpack-Carriers.jpg')
 
 # fix img
 img_convert = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 
 # flip img
-img_flip = np.flip(img_convert, figis=0)
+img_flip = np.flip(img_convert, axis=0)
 
 # draw rectange on dog's face
 # draw_rec = cv2.rectangle(
