@@ -52,6 +52,7 @@ cap = cv2.VideoCapture(0)
 while True:
     ret, frame = cap.read(0)
     frame = detect_face(frame)
+    # frame = detect_eyes(frame)
     cv2.imshow('Video Capture', frame)
 
     k = cv2.waitKey(1)
