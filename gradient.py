@@ -10,7 +10,7 @@ def displyImg(img):
     plt.show()
 
 
-img = cv2.imread('./sudoku.jpg', 0)
+img = cv2.imread('./images/sudoku.jpg', 0)
 
 # sobel discovers x or y line in the picture of gradient
 sobelx = cv2.Sobel(src=img, ddepth=cv2.CV_64F, dx=1, dy=0, ksize=5)

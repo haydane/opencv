@@ -13,7 +13,7 @@ def convertImg(img):
     return img
 
 
-img = cv2.imread('./noise.jpg')
+img = cv2.imread('./images/noise.jpg')
 img = convertImg(img)
 # img = cv2.resize(img, (100, 100))
 # cv2.putText(img=img, text='BAB', org=(20, 500), fontFace=cv2.FONT_HERSHEY_COMPLEX,
