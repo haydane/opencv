@@ -12,18 +12,16 @@ def convex_hull(img):
     img_gray = img.copy()
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    ret, thresh = cv2.threshold(img_gray, 127, 255, cv2.THRESH_BINARY)
+    ret, thresh = cv2.threshold(img_gray, 127, 255,
+                                cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     im2, contours, hierachy = cv2.findContours(thresh, cv2.RETR_TREE,
-                                               cv2.CHAIN_APPROX_NONE)
-
-    # print("contours", contours)
-    # print("hierachy", hierachy)
+                                               cv2.CHAIN_APPROX_SIMPLE)
 
     hull = [cv2.convexHull(c) for c in contours]
 
-    final = cv2.drawContours(img, hull, -1, (0, 0, 255), 2)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
+    for i in range(len(contours)):
+        if hierachy[0][i][3] == -1:
+            cv2.drawContours(img, hull, i, (0, 0, 255), 2)
     return img
 
 
@@ -58,8 +56,8 @@ while True:
         break
 
     convex_hull(frame)
-    face_detection(frame)
-    frame = cvt2Threshold(frame)
+    # face_detection(frame)
+    # frame = cvt2Threshold(frame)
     cv2.imshow('frame', frame)
 cap.release()
 cv2.destroyAllWindows()
