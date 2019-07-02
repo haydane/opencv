@@ -8,4 +8,3 @@ ret, thresh1 = cv2.threshold(img, 90, 255, cv2.THRESH_BINARY)
 
 plt.imshow(thresh1, cmap='gray')
 plt.show()
-1
