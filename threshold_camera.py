@@ -14,15 +14,16 @@ def convex_hull(img):
 
     ret, thresh = cv2.threshold(img_gray, 127, 255,
                                 cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    im2, contours, hierachy = cv2.findContours(thresh, cv2.RETR_TREE,
+    im2, contours, hierachy = cv2.findContours(thresh, cv2.RETR_EXTERNAL,
                                                cv2.CHAIN_APPROX_SIMPLE)
 
     hull = [cv2.convexHull(c) for c in contours]
 
-    for i in range(len(contours)):
-        if hierachy[0][i][3] == -1:
-            cv2.drawContours(img, hull, i, (0, 0, 255), 2)
-    return img
+    cv2.drawContours(img, hull, -1, 255, 3)
+    # for i in range(len(contours)):
+    #     if hierachy[0][i][3] == -1:
+    #         cv2.drawContours(img, hull, i, (0, 0, 255), 2)
+    # return img
 
 
 def face_detection(face):
@@ -61,3 +62,5 @@ while True:
     cv2.imshow('frame', frame)
 cap.release()
 cv2.destroyAllWindows()
+
+cv2.polylines()
