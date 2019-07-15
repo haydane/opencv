@@ -13,7 +13,6 @@ def display(img, cmap='gray'):
 reeses = cv2.imread('./images/reeses-puffs.png', 0)
 cereals = cv2.imread('./images/many_cereal.jpg', 0)
 
-
 # # 1. get key point sudo apt-get updateand descripter
 # # create a detecter object
 # # kp is key point
@@ -35,7 +34,6 @@ cereals = cv2.imread('./images/many_cereal.jpg', 0)
 
 # display(reeses_matches)
 
-
 # # second method
 
 # sift = cv2.xfeatures2d.SIFT_create()
@@ -52,7 +50,6 @@ cereals = cv2.imread('./images/many_cereal.jpg', 0)
 
 # # ratio match1 < 75% match 2
 
-
 # for match1, match2 in matches:
 #     print("match1", match1.distance)
 #     print("match2", match2.distance)
@@ -63,7 +60,6 @@ cereals = cv2.imread('./images/many_cereal.jpg', 0)
 #     reeses, kp1, cereals, kp2, good, None, flags=2)
 
 # display(sift_matches)
-
 
 # third
 
@@ -81,17 +77,21 @@ matches = flann.knnMatch(des1, des2, k=2)
 
 matchesMask = [[0, 0] for i in range(len(matches))]
 
-
 good = []
 
 for i, (match1, match2) in enumerate(matches):
-    if match1.distance < 0.7 * match2.distance:
+    if match1.distance < 0.75 * match2.distance:
         matchesMask[i] = [1, 0]
 
-draw_params = dict(matchColor=(0, 0, 255), singlePointColor=(
-    255, 0, 0), matchesMask=matchesMask, flags=2)
+# draw_params = dict(matchColor=(0, 0, 255), singlePointColor=(
+#     255, 0, 0), matchesMask=matchesMask, flags=2)
 
-flann_matches = cv2.drawMatchesKnn(
-    reeses, kp1, cereals, kp2, matches, None, **draw_params)
+draw_params = dict(matchColor=(0, 0, 255),
+                   singlePointColor=(255, 0, 0),
+                   matchesMask=matchesMask,
+                   flags=cv2.DrawMatchesFlags_DEFAULT)
+
+flann_matches = cv2.drawMatchesKnn(reeses, kp1, cereals, kp2, matches, None,
+                                   **draw_params)
 
 display(flann_matches)

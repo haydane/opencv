@@ -5,9 +5,11 @@ img = cv2.imread('./images/Dog-Backpack-Carriers.jpg')
 img = cv2.cvtColor(src=img, code=cv2.COLOR_BGR2RGB)
 face = img[380:720, 200:640]
 
-
-methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
-           'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED']
+methods = [
+    'cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
+    'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF',
+    'cv2.TM_SQDIFF_NORMED'
+]
 
 for m in methods:
     # create a copy of image
@@ -33,11 +35,11 @@ for m in methods:
     # plot and show the image
     fig = plt.figure(figsize=(12, 10))
 
-    plt.subplots(121)
+    plt.subplot(121)
     plt.imshow(res)
     plt.title('HEATMAP OF TEMPLATE MATCHING')
 
-    plt.subplots(122)
+    plt.subplot(122)
     plt.imshow(img_copy)
     plt.title('DETECTION OF TEMPLATE')
     plt.suptitle(m)
