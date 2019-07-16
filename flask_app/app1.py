@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, redirect, url_for, request
 from werkzeug import secure_filename
 from datetime import datetime
 import cv2
@@ -12,12 +12,12 @@ UPLOAD_FOLDER = './upload'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 arr_img = []
-arr_other = []
+arr = []
 arr_matching_img = []
 
 
 def feature_matching(img):
-    arr_other.clear()
+    arr.clear()
     arr_img.clear()
     path = './static/*.jpg'
     print('============================')
@@ -59,46 +59,23 @@ def feature_matching(img):
     total_img = len(glob.glob(path))
     print('image count in path: ', len(glob.glob(path)))
     print('time used: ', res_time.seconds, 'seconds')
-    arr_other.append(str(total_img))
-    arr_other.append(str(res_time))
-    return arr_other, arr_img, arr_matching_img
+    arr.append(str(total_img))
+    arr.append(str(res_time))
+    return arr, arr_img, arr_matching_img
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        try:
-            file = request.files['img']
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            results = feature_matching(str(filename))
-            print('============================')
-            print('\n\n\n\n')
-            # render_template('about.html', arr_other=arr_other, arr_img=arr_img)
-            now = datetime.now()
-            timestampp = datetime.timestamp(now)
-            return jsonify({
-                'header': {
-                    'Content-Type': 'application/json'
-                },
-                'body': {
-                    'mgs': 'success',
-                    'status': 200,
-                    'error': False,
-                    'filename selected': str(filename),
-                    'matching_img': arr_matching_img,
-                    'other': arr_other,
-                    'timestamp': timestampp
-                }
-            }), 200
-        except:
-            return jsonify({
-                'msg': 'File Not Found',
-                'status': 400,
-                'error': True
-            }), 400
+        file = request.files['img']
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        results = feature_matching(str(filename))
+        print('============================')
+        print('\n\n\n\n')
 
-    # return render_template('index.html'),
+        return render_template('about.html',arr=arr,arr_img=arr_img)
+    return render_template('index.html'),
 
 
 @app.route('/about')
