@@ -19,7 +19,7 @@ offset_img = img1[opencv_y_offset:img1.shape[0], opencv_x_offset:img1.shape[1]]
 
 img2_gray = cv2.cvtColor(src=img2, code=cv2.COLOR_RGB2GRAY)
 
-# Inverse image
+# Inverse image 
 mask_inv = cv2.bitwise_not(src=img2_gray)
 
 # Get 3 channel
