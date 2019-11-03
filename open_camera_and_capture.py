@@ -37,6 +37,7 @@ while True:
     # gray = cv2.cvtColor(src=frame, code=cv2.COLOR_BGR2GRAY)
 
     cv2.imshow('frame', frame)
+    cv2.imwrite('hello.jpg',frame[:,:])
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
