@@ -56,7 +56,11 @@ while True:
 
         # Recognize the face belongs to which ID
         Id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
+        
+        print(confidence)
 
+        if confidence > 100:
+            Id = "Unknown"
         # Check the ID if exist 
         if(Id == 1):
             Id = "Dane {0:.2f}%".format(round(100 - confidence, 2))
